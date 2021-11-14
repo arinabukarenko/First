@@ -16,6 +16,7 @@
 		844F0CC527258C5A004EBBF7 /* HomeworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F0CC427258C5A004EBBF7 /* HomeworkTests.swift */; };
 		844F0CCF27258C5A004EBBF7 /* HomeworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F0CCE27258C5A004EBBF7 /* HomeworkUITests.swift */; };
 		844F0CD127258C5A004EBBF7 /* HomeworkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F0CD027258C5A004EBBF7 /* HomeworkUITestsLaunchTests.swift */; };
+		84F26BF9272868E200010BD6 /* ConstraintDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F26BF8272868E200010BD6 /* ConstraintDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		844F0CCA27258C5A004EBBF7 /* HomeworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		844F0CCE27258C5A004EBBF7 /* HomeworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkUITests.swift; sourceTree = "<group>"; };
 		844F0CD027258C5A004EBBF7 /* HomeworkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		84F26BF8272868E200010BD6 /* ConstraintDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				844F0CAF27258C57004EBBF7 /* SceneDelegate.swift */,
 				844F0CB127258C57004EBBF7 /* ViewController.swift */,
 				844F0CB327258C57004EBBF7 /* Main.storyboard */,
+				84F26BF8272868E200010BD6 /* ConstraintDemoViewController.swift */,
 				844F0CB627258C59004EBBF7 /* Assets.xcassets */,
 				844F0CB827258C59004EBBF7 /* LaunchScreen.storyboard */,
 				844F0CBB27258C59004EBBF7 /* Info.plist */,
@@ -260,6 +263,7 @@
 			files = (
 				844F0CB227258C57004EBBF7 /* ViewController.swift in Sources */,
 				844F0CAE27258C57004EBBF7 /* AppDelegate.swift in Sources */,
+				84F26BF9272868E200010BD6 /* ConstraintDemoViewController.swift in Sources */,
 				844F0CB027258C57004EBBF7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

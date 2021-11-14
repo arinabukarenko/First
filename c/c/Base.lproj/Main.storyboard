@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmL-F3-9tb" customClass="RoundedButton" customModule="c" customModuleProvider="target">
+                            <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmL-F3-9tb" customClass="RoundedButton" customModule="c" customModuleProvider="target">
                                 <rect key="frame" x="297.66666666666669" y="687.66666666666663" width="72.333333333333314" height="72.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CmL-F3-9tb" secondAttribute="height" id="EgU-UB-XSY"/>
@@ -31,7 +31,7 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="46"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="equals:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N1L-yG-DXK"/>
+                                    <action selector="equal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UUf-S0-aCv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-jM-mAw" customClass="RoundedButton" customModule="c" customModuleProvider="target">
@@ -44,6 +44,9 @@
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="46"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="dot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KIV-qd-qMw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F69-kH-HKE" customClass="RoundedButton" customModule="c" customModuleProvider="target">
                                 <rect key="frame" x="205" y="595" width="72.666666666666686" height="72.666666666666629"/>
@@ -129,7 +132,7 @@
                                     <action selector="allClear:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QXh-fh-Kgl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBT-bH-gLq" customClass="RoundedButton" customModule="c" customModuleProvider="target">
+                            <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBT-bH-gLq" customClass="RoundedButton" customModule="c" customModuleProvider="target">
                                 <rect key="frame" x="112.66666666666669" y="318" width="72.333333333333314" height="72.333333333333314"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
@@ -139,8 +142,11 @@
                                         <color key="backgroundColor" red="0.64361393450000004" green="0.64717400069999997" blue="0.65044784550000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="unaryOperatorTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pGy-Rd-3b6"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWv-QX-sjj" customClass="RoundedButton" customModule="c" customModuleProvider="target">
+                            <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWv-QX-sjj" customClass="RoundedButton" customModule="c" customModuleProvider="target">
                                 <rect key="frame" x="205" y="317.66666666666669" width="72.666666666666686" height="72.333333333333314"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
@@ -150,6 +156,9 @@
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="35"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="unaryOperatorTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tdx-R0-s1o"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUc-gF-Gde" customClass="RoundedButton" customModule="c" customModuleProvider="target">
                                 <rect key="frame" x="112.66666666666669" y="502.99999999999994" width="72.333333333333314" height="72.333333333333314"/>
@@ -244,7 +253,6 @@
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="46"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="binaryOperandButonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bzr-lL-mQQ"/>
@@ -259,7 +267,6 @@
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                     </backgroundConfiguration>
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="46"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="binaruOperandButonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Gg-hL-xBI"/>
