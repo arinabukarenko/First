@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="agZ-BN-Ol9">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -9,16 +9,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Manual Layout Calculator View Controller-->
+        <scene sceneID="MRE-rt-uLo">
+            <objects>
+                <viewController id="agZ-BN-Ol9" userLabel="Manual Layout Calculator View Controller" customClass="ManualLayoutCalculatorViewController" customModule="c" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O7J-ff-PsS">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="DIB-M6-c0J"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BIb-MM-wuA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="523" y="-80"/>
+        </scene>
         <!--Storyboarded Calculator View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="StoryboardCalculatorViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="StoryboardedCalculatorViewController" customModule="c" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmL-F3-9tb" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="297.66666666666669" y="687.66666666666663" width="72.333333333333314" height="72.333333333333371"/>
+                                <rect key="frame" x="326" y="760" width="82" height="82"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CmL-F3-9tb" secondAttribute="height" id="EgU-UB-XSY"/>
                                 </constraints>
@@ -35,7 +50,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-jM-mAw" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="205" y="687.66666666666663" width="72.666666666666686" height="72.333333333333371"/>
+                                <rect key="frame" x="224" y="760" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=",">
@@ -49,7 +64,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F69-kH-HKE" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="205" y="595" width="72.666666666666686" height="72.666666666666629"/>
+                                <rect key="frame" x="224" y="658" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="3">
@@ -63,7 +78,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7M-dV-Jeq" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="112.66666666666669" y="595.33333333333337" width="72.333333333333314" height="72.666666666666629"/>
+                                <rect key="frame" x="122" y="658.33333333333337" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="2">
@@ -77,7 +92,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wu-lx-cEU" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="20" y="595.33333333333337" width="72.666666666666671" height="72.666666666666629"/>
+                                <rect key="frame" x="20" y="658.33333333333337" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="1">
@@ -91,7 +106,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sQ-MT-BIu" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="20" y="502.99999999999994" width="72.666666666666671" height="72.333333333333314"/>
+                                <rect key="frame" x="20" y="556.33333333333337" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="4">
@@ -105,7 +120,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8i-6H-a1v" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="20" y="410.33333333333331" width="72.666666666666671" height="72.666666666666686"/>
+                                <rect key="frame" x="20" y="454.33333333333331" width="82" height="81.999999999999943"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="7">
@@ -119,7 +134,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wsr-Ff-xbX" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="20" y="318" width="72.666666666666671" height="72.333333333333314"/>
+                                <rect key="frame" x="20" y="352.33333333333331" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="AC">
@@ -133,7 +148,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBT-bH-gLq" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="112.66666666666669" y="318" width="72.333333333333314" height="72.333333333333314"/>
+                                <rect key="frame" x="122" y="352.33333333333331" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
@@ -147,7 +162,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWv-QX-sjj" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="205" y="317.66666666666669" width="72.666666666666686" height="72.333333333333314"/>
+                                <rect key="frame" x="224" y="352" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="%">
@@ -161,7 +176,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUc-gF-Gde" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="112.66666666666669" y="502.99999999999994" width="72.333333333333314" height="72.333333333333314"/>
+                                <rect key="frame" x="122" y="556.33333333333337" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="5">
@@ -175,7 +190,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgp-jH-8Zo" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="112.66666666666669" y="410.33333333333331" width="72.333333333333314" height="72.666666666666686"/>
+                                <rect key="frame" x="122" y="454.33333333333331" width="82" height="81.999999999999943"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="8">
@@ -189,7 +204,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izb-YA-trh" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="205" y="502.66666666666669" width="72.666666666666686" height="72.333333333333314"/>
+                                <rect key="frame" x="224" y="556" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="6">
@@ -203,7 +218,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLK-lk-xSl" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="205" y="410" width="72.666666666666686" height="72.666666666666686"/>
+                                <rect key="frame" x="224" y="454" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="9">
@@ -217,7 +232,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfD-Ow-LBH" customClass="BinaryOperatorButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="297.66666666666669" y="595" width="72.333333333333314" height="72.666666666666629"/>
+                                <rect key="frame" x="326" y="658" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="+">
@@ -231,7 +246,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0F6-on-Oe1" customClass="BinaryOperatorButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="297.66666666666669" y="502.66666666666669" width="72.333333333333314" height="72.333333333333314"/>
+                                <rect key="frame" x="326" y="556" width="82" height="82"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="-">
@@ -245,7 +260,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIU-60-Lq8" customClass="BinaryOperatorButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="297.66666666666669" y="410" width="72.333333333333314" height="72.666666666666686"/>
+                                <rect key="frame" x="326" y="454" width="82" height="82"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="×">
@@ -259,7 +274,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbh-VQ-JSq" customClass="BinaryOperatorButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="297.66666666666669" y="317.66666666666669" width="72.333333333333314" height="72.333333333333314"/>
+                                <rect key="frame" x="326" y="352" width="82" height="82"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="÷">
@@ -269,11 +284,11 @@
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="46"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="binaruOperandButonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Gg-hL-xBI"/>
+                                    <action selector="binaryOperandButonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y7w-KZ-rlM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGz-S4-WMD" customClass="RoundedButton" customModule="c" customModuleProvider="target">
-                                <rect key="frame" x="20" y="688" width="165" height="72"/>
+                                <rect key="frame" x="20" y="760.33333333333337" width="184" height="81.666666666666629"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="0">
@@ -287,7 +302,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RGM-TR-Xr4">
-                                <rect key="frame" x="20" y="297.66666666666669" width="350" height="0.0"/>
+                                <rect key="frame" x="20" y="332" width="388" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -399,11 +414,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="81.753554502369667"/>
+            <point key="canvasLocation" x="-460" y="-80"/>
         </scene>
     </scenes>
     <resources>
         <image name="plus.forwardslash.minus" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
