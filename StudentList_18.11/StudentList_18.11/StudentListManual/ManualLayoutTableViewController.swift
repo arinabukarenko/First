@@ -7,17 +7,22 @@
 
 import UIKit
 
-class ManualLayoutTableViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating{
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
+protocol ManualLayoutTableViewControllerDelegate {
+    func didSelectStudent(_ student: String)
+}
+
+class ManualLayoutTableViewController: UIViewController {
     
+    var delegate: ManualLayoutTableViewControllerDelegate?
     
     let tableView = UITableView()
-    private var searchController = UISearchController()
-    var filteresNames: [String]!
-    
-    
+    var searchController = UISearchController()
+    var filteredNames: [[String]] {
+        [male, female]
+    }
+    var filteredMale:[String] = []
+    var filteredFemale: [ String] = []
+    var filterName: [String] = []
     
     var male = ["Aртимович Игорь Владимирович",
                 "Богданович Дмитрий Александрович",
@@ -38,18 +43,24 @@ class ManualLayoutTableViewController: UIViewController, UITableViewDelegate, UI
                   "Сандова Галина Александровна",
                   "Елисеева Марина Михайловна"].sorted()
     
-    lazy var students: [String] = male + female
-    
+    var filterText: String? {
+        didSet {
+            if let filterText = filterText {
+                filterDataSource(filterText)
+            } else {
+                resetDataSource()
+            }
+        }
+    }
     override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        filteresNames = students
-        
-        searchController = UISearchController(searchResultsController: nil)
-        tableView.tableHeaderView = searchController.searchBar
+        tableView.delegate = self
         searchController.searchBar.delegate = self
+        super.viewDidLoad()
+        
+        
+        tableView.tableHeaderView = searchController.searchBar
+        
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search"
         
         searchController.hidesNavigationBarDuringPresentation = false
@@ -64,8 +75,8 @@ class ManualLayoutTableViewController: UIViewController, UITableViewDelegate, UI
     // MARK: - Setup View
     func setupTableView(){
         tableView.dataSource = self
-        tableView.delegate = self
-        
+        tableView.keyboardDismissMode = .onDrag
+        filterText = nil
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,52 +87,66 @@ class ManualLayoutTableViewController: UIViewController, UITableViewDelegate, UI
         tableView.trailingAnchor.constraint(equalTo:view.trailingAnchor).isActive = true
         
     }
+    func resetDataSource() {
+        tableView.reloadData()
+        print("result")
+    }
+    
+    func filterDataSource(_ filterText:String) {
+        if filterText.count > 0 {
+            male = male.filter {
+                $0.lowercased().contains(filterText.lowercased())
+            }
+            female = female.filter {
+                $0.lowercased().contains(filterText.lowercased())
+            }
+            tableView.reloadData()
+            
+        } else if filterText == "" {
+            resetDataSource()
+            
+        }
+        
+    }
     
 }
 // MARK: - Extension
 
 extension ManualLayoutTableViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2}
+        return filteredNames.count
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 1{
-            return filteresNames.count
-        }
-        return filteresNames.count}
+        return filteredNames[section].count
+        
+    }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1{
-            return "Женщины \(female.count)"
+        var sectionName: String = ""
+        switch section {
+        case 0: sectionName = "Мужчины"
+        case 1: sectionName = "Женщины"
+        default: break
         }
-        return "Мужчины \(male.count)"
+        return "\(sectionName) \(filteredNames[section].count) человек"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewStudentCell", for: indexPath) as! NewStudentCell
-        cell.titleLabel.text = filteresNames[indexPath.row]
-        if indexPath.section == 1{
-            cell.titleLabel.text = filteresNames[indexPath.row]
-            
-        }
+        cell.titleLabel.text = filteredNames[indexPath.section][indexPath.row]
+        
         return cell
     }
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        if searchController.isActive {
-            return false
-        } else {
-            return true
-        }
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteresNames = []
-        if searchText == "" {
-            filteresNames = students
-        }else{
-            for students1 in students {
-                if students1.contains(searchText){
-                    filteresNames.append(students1)
-                }
-            }
-        }
-        self.tableView.reloadData()
-    }
+    
 }
+extension ManualLayoutTableViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("selected \(filteredNames[indexPath.section][indexPath.row])")    }
+}
+extension ManualLayoutTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterText = searchText
+    }
+    
+}
+
