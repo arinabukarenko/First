@@ -18,7 +18,7 @@ class ManualLayoutTableViewController: UIViewController {
     let tableView = UITableView()
     var searchController = UISearchController()
     var filteredNames: [[String]] {
-        [male, female]
+        [filteredMale, filteredFemale]
     }
     var filteredMale:[String] = []
     var filteredFemale: [ String] = []
@@ -88,16 +88,18 @@ class ManualLayoutTableViewController: UIViewController {
         
     }
     func resetDataSource() {
+        filteredMale = male
+        filteredFemale = female
         tableView.reloadData()
         print("result")
     }
     
     func filterDataSource(_ filterText:String) {
         if filterText.count > 0 {
-            male = male.filter {
+            filteredMale = male.filter {
                 $0.lowercased().contains(filterText.lowercased())
             }
-            female = female.filter {
+            filteredFemale = female.filter {
                 $0.lowercased().contains(filterText.lowercased())
             }
             tableView.reloadData()
@@ -141,12 +143,18 @@ extension ManualLayoutTableViewController: UITableViewDataSource{
 extension ManualLayoutTableViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("selected \(filteredNames[indexPath.section][indexPath.row])")    }
+        delegate?.didSelectStudent(filteredNames[indexPath.section][indexPath.row])
+        dismiss(animated: true, completion: nil)
+        print("selected \(filteredNames[indexPath.section][indexPath.row])")
+        
+    }
 }
+
 extension ManualLayoutTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterText = searchText
     }
     
 }
+
 

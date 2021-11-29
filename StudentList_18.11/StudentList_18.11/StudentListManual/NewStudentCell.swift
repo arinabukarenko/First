@@ -50,8 +50,8 @@ class NewStudentCell: UITableViewCell {
        
         
         
-        titleLabel.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: cellView.topAnchor,constant: 10).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
         //titleLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
