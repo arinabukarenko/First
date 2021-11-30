@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		840657A32750CE3100A08DA5 /* ButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840657A22750CE3100A08DA5 /* ButtonViewController.swift */; };
+		84087A2227556C0900F80D6F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84087A2127556C0900F80D6F /* TableViewCell.swift */; };
 		840F5AEF274BCDCA006846E5 /* NewStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840F5AEE274BCDCA006846E5 /* NewStudentCell.swift */; };
 		844DAFBE274A23CA00467080 /* ManualLayoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DAFBD274A23CA00467080 /* ManualLayoutTableViewController.swift */; };
 		84666E962746ADFA00FC31B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84666E952746ADFA00FC31B5 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		840657A22750CE3100A08DA5 /* ButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewController.swift; sourceTree = "<group>"; };
+		84087A2127556C0900F80D6F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		840F5AEE274BCDCA006846E5 /* NewStudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStudentCell.swift; sourceTree = "<group>"; };
 		844DAFBD274A23CA00467080 /* ManualLayoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLayoutTableViewController.swift; sourceTree = "<group>"; };
 		84666E922746ADFA00FC31B5 /* StudentList_18.11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentList_18.11.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +62,7 @@
 				844DAFBD274A23CA00467080 /* ManualLayoutTableViewController.swift */,
 				840657A22750CE3100A08DA5 /* ButtonViewController.swift */,
 				840F5AEE274BCDCA006846E5 /* NewStudentCell.swift */,
+				84087A2127556C0900F80D6F /* TableViewCell.swift */,
 			);
 			path = StudentListManual;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84666E9A2746ADFA00FC31B5 /* ViewController.swift in Sources */,
+				84087A2227556C0900F80D6F /* TableViewCell.swift in Sources */,
 				840657A32750CE3100A08DA5 /* ButtonViewController.swift in Sources */,
 				84666E962746ADFA00FC31B5 /* AppDelegate.swift in Sources */,
 				844DAFBE274A23CA00467080 /* ManualLayoutTableViewController.swift in Sources */,

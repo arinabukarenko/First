@@ -7,25 +7,23 @@
 
 import UIKit
 
-class ButtonViewController: UIViewController {
-    
-    
-  
-    var selectButton:UIButton = UIButton()
-//    func buttonTapped(){
-//    let storyboard = ManualLayoutTableViewController()
-//        let vc = storyboard.storyboard?.instantiateViewController(withIdentifier: "ManualLayoutTableViewCotroller") as! ManualLayoutTableViewController
-//        vc.delegate = self
-//        
-//    }
 
+
+class ButtonViewController: UIViewController {
+    var selectButton:UIButton = UIButton()
+    var newTableView = UITableView()
     
+
     
     override func viewDidLoad() {
         createButton()
+        setupNewTableView()
         super.viewDidLoad()
-        
+        newTableView.backgroundColor = .white
         self.view.backgroundColor = .white
+        newTableView.dataSource = self
+        newTableView.delegate = self
+        newTableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
     }
     
     func createButton() {
@@ -56,11 +54,47 @@ class ButtonViewController: UIViewController {
      
         present(vc, animated: true, completion: nil)
     }
+    func setupNewTableView () {
+      
+        view.addSubview(newTableView)
+        
+        newTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        newTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        newTableView.bottomAnchor.constraint(equalTo: selectButton.topAnchor).isActive = true
+        newTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        newTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        
+        
+    }
+        
+       
+        
     
     
 }
 extension ButtonViewController: ManualLayoutTableViewControllerDelegate {
     func didSelectStudent(_ student: String) {
         selectButton.setTitle(student, for: .normal)
+    }
+}
+    
+extension ButtonViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let newCell = newTableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+        newCell.title.text = ""
+        return newCell
+    }
+}
+
+extension ButtonViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        newTableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
 }

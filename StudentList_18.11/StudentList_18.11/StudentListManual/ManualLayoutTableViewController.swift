@@ -9,11 +9,13 @@ import UIKit
 
 protocol ManualLayoutTableViewControllerDelegate {
     func didSelectStudent(_ student: String)
+    
 }
 
 class ManualLayoutTableViewController: UIViewController {
     
     var delegate: ManualLayoutTableViewControllerDelegate?
+    
     
     let tableView = UITableView()
     var searchController = UISearchController()
