@@ -16,9 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let buttonVC = ButtonViewController() as UIViewController
-        let navController = UINavigationController(rootViewController: buttonVC)
-        window?.rootViewController = navController
+        let vc = ManualLayoutTableViewController()
+        vc.shouldAddSelectButton = true
+        vc.shouldAddSearchBar = true
+        
+       // let studentManager = StudentManager()
+        //vc.male = studentManager.readMenList()
+        //vc.female = studentManager.readWomenList()
+        
+        
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
         
     }

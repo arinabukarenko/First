@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
      
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "DidSelectStudentNotification"), object: nil, queue: nil) {notification in
+            if let object = notification.object as? NotificationObject {
+              print("received in appdelegate delegate \(object)")
+            }
+        }
         return true 
     }
 

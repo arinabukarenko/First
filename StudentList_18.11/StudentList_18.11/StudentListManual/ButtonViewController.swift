@@ -10,11 +10,21 @@ import UIKit
 
 
 class ButtonViewController: UIViewController {
+    
     var selectButton:UIButton = UIButton()
     var newTableView = UITableView()
     
+    private var maleArray: [String] = []
+    
+    private var femaleArray: [String] = []
+    
+    var arrayOfStudents:[[String]] {
+        [maleArray, femaleArray]
+    }
+    
 
     
+
     override func viewDidLoad() {
         createButton()
         setupNewTableView()
@@ -24,10 +34,12 @@ class ButtonViewController: UIViewController {
         newTableView.dataSource = self
         newTableView.delegate = self
         newTableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+        
     }
+    // MARK: - Func
     
     func createButton() {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .custom)
         
         button.setTitle("student", for: .normal)
         button.setTitleColor(UIColor.systemOrange, for: .normal)
@@ -46,14 +58,20 @@ class ButtonViewController: UIViewController {
             ])
         
         selectButton = button
-        
     }
+    
  @objc func handlePresentingVC(_ sender: UIButton) {
         let vc = ManualLayoutTableViewController()
-     vc.delegate = self
-     
+       // vc.delegate = self
+    
+ 
+     vc.selectStudent = {[weak self] student, gender, sender in
+         self?.didSelectStudent(student, gender: gender, sender: sender)
+     }
         present(vc, animated: true, completion: nil)
     }
+    
+    
     func setupNewTableView () {
       
         view.addSubview(newTableView)
@@ -65,36 +83,64 @@ class ButtonViewController: UIViewController {
         newTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         newTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
-        
     }
         
-       
+    func presentAlertForStudent(_ student: String, in viewController: ButtonViewController) {
+        let alertVC = UIAlertController(title: "Error", message: "Student \(student) already exists", preferredStyle: .alert)
+        
+        alertVC.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        
+        viewController.present(alertVC, animated: true, completion: nil)
+    }
         
     
-    
 }
+// MARK: - Extensions
+
 extension ButtonViewController: ManualLayoutTableViewControllerDelegate {
-    func didSelectStudent(_ student: String) {
-        selectButton.setTitle(student, for: .normal)
+    func didSelectStudent(_ student: String, gender: Int, sender: UIViewController) {
+        var alreadyExist = false
+        
+        if gender == 0 {
+            if maleArray.contains(student) {
+                alreadyExist = true
+            }
+        } else {
+            if femaleArray.contains(student) {
+                alreadyExist = true
+            }
+        }
+        
+        if alreadyExist {
+            presentAlertForStudent(student, in: sender as! ButtonViewController)
+            return
+        }
+        
+        sender.dismiss(animated: true, completion: nil)
+        
+        if gender == 0 {
+            maleArray.append(student)
+        } else {
+            femaleArray.append(student)
+        }
+        
     }
 }
-    
 extension ButtonViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newCell = newTableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        newCell.title.text = ""
-        return newCell
+       let newCell = newTableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+    
+    return newCell
     }
 }
-
 extension ButtonViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
         newTableView.deselectRow(at: indexPath, animated: true)
-        
-        
+       
     }
 }
