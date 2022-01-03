@@ -69,12 +69,11 @@ class StudentManagerCoreData {
         let fetchRequest = NSFetchRequest<Student>(entityName: "Student")
         
         if let result = try? context.fetch(fetchRequest) {
-        
-    for object in result {
-        context.delete(object)
+            for object in result {
+                context.delete(object)
+            }
         }
-        }
-        }
+    }
     
     private lazy var context: NSManagedObjectContext = {
         return persistentContainer.viewContext
