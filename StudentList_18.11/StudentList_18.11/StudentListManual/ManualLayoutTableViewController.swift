@@ -28,9 +28,11 @@ protocol ManualLayoutTableViewControllerDelegate: AnyObject {
 class ManualLayoutTableViewController: UIViewController {
     let studentManager = StudentManagerCoreData()
     
+    
     private lazy var selectButton = UIButton(type: .custom)
     private lazy var tableView = UITableView()
     private lazy var searchBar = UISearchBar()
+    
     
     var shouldAddSelectButton = false
     var shouldAddSearchBar = false
@@ -38,22 +40,15 @@ class ManualLayoutTableViewController: UIViewController {
     weak var delegate: ManualLayoutTableViewControllerDelegate?
     var didSelectStudentClosure:((String, Int, UIViewController) -> ())?
     
-    
-    lazy var female: [String] = {
-        studentManager.readFemaleList()
-        
-    }()
-    
-    lazy var male: [String] = {
-        studentManager.readMaleList()
-    }()
+    var male: [StudentObject] = DataSource.menArray
     
     private var filteredMale:[String] = []
     private var filteredFemale:[String] = []
     
-    private var studentData: [[String]] {
-        [filteredMale, filteredFemale]
+    private var dataSource: [[StudentObject]] {
+        [male]
     }
+    
     private var filterText: String? {
         didSet {
             reloadFilterData()
@@ -78,6 +73,8 @@ class ManualLayoutTableViewController: UIViewController {
                     }
                     
                     NotificationCenter.default.addObserver(self, selector: #selector(notificationTriggered), name: UIApplication.willResignActiveNotification, object: nil)
+            
+            
                 }
                 
     @objc func notificationTriggered(){
@@ -86,7 +83,7 @@ class ManualLayoutTableViewController: UIViewController {
         
     // MARK: - Setup View
     private func saveData() {
-        studentManager.saveData(maleList: male, femaleList: female)
+   //     studentManager.saveData(maleList: male, femaleList: female)
     }
     private func setup() {
         if shouldAddSearchBar {
@@ -117,7 +114,6 @@ class ManualLayoutTableViewController: UIViewController {
         ])
     }
     
-    
     private func setupSelectButton() {
         selectButton.setTitle("Select a student", for: .normal)
         selectButton.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +126,7 @@ class ManualLayoutTableViewController: UIViewController {
             selectButton.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        selectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
+      //  selectButton.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
     }
     
     private func setupSearchBar() {
@@ -158,59 +154,59 @@ class ManualLayoutTableViewController: UIViewController {
     }
 }
     private func resetDataSource() {
-        filteredMale = male
-        filteredFemale = female
-        print("result")
+//        filteredMale = male
+//        filteredFemale = female
+//        print("result")
     }
     
     private func filterDataSource(_ filterText:String) {
-        if filterText.count > 0 {
-            filteredMale = male.filter {
-                $0.lowercased().contains(filterText.lowercased())
-            }
-            
-            filteredFemale = female.filter {
-                $0.lowercased().contains(filterText.lowercased())
-                
-            }
-        } else {
-            resetDataSource()
-            }
+//        if filterText.count > 0 {
+//            filteredMale = male.filter {
+//                $0.lowercased().contains(filterText.lowercased())
+//            }
+//
+//            filteredFemale = female.filter {
+//                $0.lowercased().contains(filterText.lowercased())
+//
+//            }
+//        } else {
+//            resetDataSource()
+//            }
     }
-    private func presentAlertForStudent(_ student: String, in viewController: UIViewController) {
-        let alertVC = UIAlertController(title: "Error", message: "Student \(student) already exists", preferredStyle: .alert)
-        
-        alertVC.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        
-        viewController.present(alertVC, animated: true, completion: nil)
-    }
+//    private func presentAlertForStudent(_ student: String, in viewController: UIViewController) {
+//        let alertVC = UIAlertController(title: "Error", message: "Student \(student) already exists", preferredStyle: .alert)
+//
+//        alertVC.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+//
+//        viewController.present(alertVC, animated: true, completion: nil)
+//    }
     
     @objc private func selectButtonTapped() {
-        let vc = ManualLayoutTableViewController()
-        vc.shouldAddSelectButton = false
-        vc.shouldAddSearchBar = true
-        vc.male = StudentData.maleArray
-        vc.female = StudentData.femaleArray
-       vc.didSelectStudentClosure = {[weak self] student, gender, sender in
-       self?.didSelectStudent(student, gender: gender, sender: sender)
-   }
-    
-    present(vc, animated: true)
+//        let vc = ManualLayoutTableViewController()
+//        vc.shouldAddSelectButton = false
+//        vc.shouldAddSearchBar = true
+//        vc.male = StudentData.maleArray
+//        vc.female = StudentData.femaleArray
+//       vc.didSelectStudentClosure = {[weak self] student, gender, sender in
+//       self?.didSelectStudent(student, gender: gender, sender: sender)
+//   }
+//
+//    present(vc, animated: true)
 }
 }
 // MARK: - Extension
 
 extension ManualLayoutTableViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return studentData.count
+        return dataSource.count
         
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentData[section].count
+        return dataSource[section].count
         
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if studentData[section].count == 0 {
+        if dataSource[section].count == 0 {
             return nil
         }
         var sectionName: String = ""
@@ -219,94 +215,105 @@ extension ManualLayoutTableViewController: UITableViewDataSource{
         case 1: sectionName = "Женщины"
         default: break
         }
-        return "\(sectionName) \(studentData[section].count) человек"
+        return "\(sectionName) \(dataSource[section].count) человек"
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewStudentCell", for: indexPath) as! NewStudentCell
-        cell.titleLabel.text = studentData[indexPath.section][indexPath.row]
+        let student = dataSource[indexPath.section][indexPath.row]
+        cell.titleLabel.text = student.name
+        
+        DataSource.fetchGithubUserAvatar(student.login) { [weak cell] result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    cell?.avatarImageView.image = image
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         return cell
     }
-    
 }
+
 extension ManualLayoutTableViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelectStudent(studentData[indexPath.section][indexPath.row], gender: indexPath.section, sender: self)
-        selectStudent(studentData[indexPath.section][indexPath.row], indexPath.section, self)
-        didSelectStudentClosure?(studentData[indexPath.section][indexPath.row], indexPath.section, self)
-        print("selected \(studentData[indexPath.section][indexPath.row])")
         
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return shouldAddSelectButton
-    }
-    
-    func tableView(_ tableView:UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let nameToDelete = studentData[indexPath.section][indexPath.row]
-        if editingStyle == .delete {
-            if indexPath.section == 0 {
-                if let index = male.firstIndex(of: nameToDelete) {
-                    male.remove(at: index)
-                }
-            } else {
-                if let index = female.firstIndex(of: nameToDelete) {
-                    female.remove(at: index)
-                }
-            }
-            
-            reloadFilterData(shouldReloadTableView: false)
-            
-            tableView.performBatchUpdates({
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }, completion: { finished in
-                tableView.reloadData()
-            })
-        }
-    }
+        tableView.deselectRow(at: indexPath, animated: true)
+//        delegate?.didSelectStudent(studentData[indexPath.section][indexPath.row], gender: indexPath.section, sender: self)
+//        selectStudent(studentData[indexPath.section][indexPath.row], indexPath.section, self)
+//        didSelectStudentClosure?(studentData[indexPath.section][indexPath.row], indexPath.section, self)
+//        print("selected \(studentData[indexPath.section][indexPath.row])")
+//
+   }
+//
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return shouldAddSelectButton
+//    }
+//
+//    func tableView(_ tableView:UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        let nameToDelete = studentData[indexPath.section][indexPath.row]
+//        if editingStyle == .delete {
+//            if indexPath.section == 0 {
+//                if let index = male.firstIndex(of: nameToDelete) {
+//                    male.remove(at: index)
+//                }
+//            } else {
+//                if let index = female.firstIndex(of: nameToDelete) {
+//                    female.remove(at: index)
+//                }
+//            }
+//
+//            reloadFilterData(shouldReloadTableView: false)
+//
+//            tableView.performBatchUpdates({
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+//            }, completion: { finished in
+//                tableView.reloadData()
+//            })
+//        }
+//        saveData()
+//    }
 }
 
 extension ManualLayoutTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterText = searchText
-    }
-    
+       filterText = searchText
+   }
 }
+    
 extension ManualLayoutTableViewController: ManualLayoutTableViewControllerDelegate{
     func didSelectStudent(_ student: String, gender: Int, sender: UIViewController) {
-        var alreadyExist = false
-
-        if gender == 0 {
-            if male.contains(student) {
-                alreadyExist = true
-            }
-        } else {
-            if female.contains(student) {
-                alreadyExist = true
-            }
-        }
-
-        if alreadyExist {
-            presentAlertForStudent(student, in: sender)
-            return
-        }
-
-        sender.dismiss(animated: true, completion: nil)
-
-        if gender == 0 {
-            male.append(student)
-        } else {
-            female.append(student)
-        }
-
-        reloadFilterData()
-        saveData()
+//        var alreadyExist = false
+//
+//        if gender == 0 {
+//            if male.contains(student) {
+//                alreadyExist = true
+//            }
+//        } else {
+//            if female.contains(student) {
+//                alreadyExist = true
+//            }
+//        }
+//
+//        if alreadyExist {
+//            presentAlertForStudent(student, in: sender)
+//            return
+//        }
+//
+//        sender.dismiss(animated: true, completion: nil)
+//
+//        if gender == 0 {
+//            male.append(student)
+//        } else {
+//            female.append(student)
+//        }
+//
+//        reloadFilterData()
+//
+        //        saveData()
     }
-    }
-    
-        
-    
-
-
+}
 

@@ -10,9 +10,10 @@ import CoreData
 class StudentManagerCoreData {
     
     func saveData(maleList: [String]?, femaleList: [String]?) {
+        clearData()
         saveMaleList(maleList)
         saveFemaleList(femaleList)
-        clearData()
+        
     }
     
     private func saveMaleList(_ maleList: [String]?) {

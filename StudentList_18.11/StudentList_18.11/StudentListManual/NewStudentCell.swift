@@ -9,6 +9,8 @@ import UIKit
 
 class NewStudentCell: UITableViewCell {
 
+    let avatarImageView = UIImageView()
+    
     let cellView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +40,27 @@ class NewStudentCell: UITableViewCell {
         setup()
             
         }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        setup()
+    }
+    
     func setup(){
+        
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+               contentView.addSubview(avatarImageView)
+               avatarImageView.backgroundColor = .blue
+               
+               NSLayoutConstraint.activate([
+                   avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+                   avatarImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+                   avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+                   avatarImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
+                   avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+               ])
+        
         backgroundColor = UIColor.white
         addSubview(cellView)
         cellView.addSubview(titleLabel)
@@ -52,13 +74,11 @@ class NewStudentCell: UITableViewCell {
         
         titleLabel.topAnchor.constraint(equalTo: cellView.topAnchor,constant: 10).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: cellView.leadingAnchor, constant: 10).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+        titleLabel.adjustsFontSizeToFitWidth = true
+        
         //titleLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
